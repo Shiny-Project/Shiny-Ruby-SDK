@@ -37,7 +37,7 @@ class Shiny
         event['hash'] = Digest::MD5.hexdigest(data.to_json)
       end
     rescue
-      ShinyError.new('Fail to generate hash.')
+      raise ShinyError.new('Fail to generate hash.')
     end
 
     event['data'] = data  
@@ -50,7 +50,7 @@ class Shiny
       response = RestClient.post(url, payload)
       return JSON.parser(response.body)
     rescue => e
-      ShinyError.new('Network error:' + e.to_s)
+      raise ShinyError.new('Network error:' + e.to_s)
     end
   end
 
@@ -61,7 +61,7 @@ class Shiny
       response = RestClient.get(url)
       return JSON.parse(response.body)
     rescue => e
-      ShinyError.new('Network error:' + e.to_s)
+      raise ShinyError.new('Network error:' + e.to_s)
     end
   end
 end
