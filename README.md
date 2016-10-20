@@ -7,7 +7,7 @@ gem install shiny-sdk
 
 ## 使用
 ```ruby
-require 'shiny_sdk'
+require 'shiny-sdk'
 
 shiny = Shiny.new('apikey', 'api_secret_key', 'api_host')
 
