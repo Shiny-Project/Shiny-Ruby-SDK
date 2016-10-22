@@ -47,7 +47,7 @@ class Shiny
 
     begin
       response = RestClient.post(url, payload)
-      return JSON.parser(response.body)
+      return JSON.parse(response.body)
     rescue => e
       raise ShinyError.new('Network error:' + e.to_s)
     end
