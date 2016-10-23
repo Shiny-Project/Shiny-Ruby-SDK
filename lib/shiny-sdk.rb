@@ -1,7 +1,8 @@
 require 'json'
 require 'digest/md5'
 require 'digest/sha1'
-require 'rest-client'
+require 'net/http'
+require 'uri'
 
 class ShinyError < StandardError
   def initialize(message)
@@ -45,22 +46,24 @@ class Shiny
 
     payload["event"] = event.to_json
 
-    begin
-      response = RestClient.post(url, payload)
+    response = Net::HTTP.post_form(URI.parse(url), payload)
+    if response.code != 200
       return JSON.parse(response.body)
-    rescue => e
-      raise ShinyError.new('Network error:' + e.to_s)
+    else
+      raise ShinyError.new('Network error:' + response.code)
     end
   end
 
   def recent
     # 获取最新项目
     url = @API_HOST + '/Data/recent'
-    begin
-      response = RestClient.get(url)
+    uri = URI.parse(url)
+    req = Net::HTTP::Get.new(uri)
+    response = Net::HTTP.start(uri.host, uri.port) {|http| http.request req }
+    if response.code != 200
       return JSON.parse(response.body)
-    rescue => e
-      raise ShinyError.new('Network error:' + e.to_s)
+    else
+      raise ShinyError.new('Network error:' + response.code)
     end
   end
 end
