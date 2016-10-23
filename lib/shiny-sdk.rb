@@ -47,7 +47,7 @@ class Shiny
     payload["event"] = event.to_json
 
     response = Net::HTTP.post_form(URI.parse(url), payload)
-    if response.code != 200
+    if response.code == '200'
       return JSON.parse(response.body)
     else
       raise ShinyError.new('Network error:' + response.code)
@@ -60,7 +60,7 @@ class Shiny
     uri = URI.parse(url)
     req = Net::HTTP::Get.new(uri)
     response = Net::HTTP.start(uri.host, uri.port) {|http| http.request req }
-    if response.code != 200
+    if response.code == '200'
       return JSON.parse(response.body)
     else
       raise ShinyError.new('Network error:' + response.code)
