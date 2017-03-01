@@ -11,10 +11,10 @@ class ShinyError < StandardError
 end
 
 class Shiny
-  def initialize(api_key, api_secret_key, api_host='https://shiny.kotori.moe')
-    @API_KEY = api_key
-    @API_SECRET_KEY = api_secret_key
-    @API_HOST = api_host
+  def initialize(API_KEY, API_SECRET_KEY, API_HOST='https://shiny.kotori.moe')
+    @API_KEY = API_KEY
+    @API_SECRET_KEY = API_SECRET_KEY
+    @API_HOST = API_HOST
   end
 
   # 添加数据项
