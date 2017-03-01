@@ -11,10 +11,10 @@ class ShinyError < StandardError
 end
 
 class Shiny
-  def initialize(API_KEY, API_SECRET_KEY, API_HOST='https://shiny.kotori.moe')
-    @API_KEY = API_KEY
-    @API_SECRET_KEY = API_SECRET_KEY
-    @API_HOST = API_HOST
+  def initialize(api_key, api_secret_key, api_host='https://shiny.kotori.moe')
+    @API_KEY = api_key
+    @API_SECRET_KEY = api_secret_key
+    @API_HOST = api_host
   end
 
   # 添加数据项
@@ -58,8 +58,11 @@ class Shiny
   def recent(page=1)
     url = @API_HOST + "/Data/recent?page=#{page}"
     uri = URI.parse(url)
-    req = Net::HTTP::Get.new(uri)
-    response = Net::HTTP.start(uri.host, uri.port) {|http| http.request req }
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true if uri.scheme == 'https'
+    response = http.start {|http| 
+      http.request Net::HTTP::Get.new(uri.request_uri)
+    }
     if response.code == '200'
       return JSON.parse(response.body)
     else
