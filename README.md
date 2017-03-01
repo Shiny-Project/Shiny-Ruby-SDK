@@ -9,7 +9,7 @@ gem install shiny-sdk
 ```ruby
 require 'shiny-sdk'
 
-shiny = Shiny.new('apikey', 'api_secret_key', 'api_host') # apikey 和 api_secret_key 必须填写，api_host 不填写会使用默认值。。
+shiny = Shiny.new('apikey', 'api_secret_key', 'api_host') # apikey 和 api_secret_key 必须填写，api_host 不填写会使用默认值。
 
 # 获取最新项目
 shiny.recent(page) # page 选填，不填写默认为 1。
