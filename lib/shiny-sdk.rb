@@ -50,7 +50,7 @@ class Shiny
     if response.code == '200'
       return JSON.parse(response.body)
     else
-      raise ShinyError.new('Network error:' + response.code)
+      raise ShinyError.new("HTTP Code: #{response.code}, Body: #{JSON.parse(response.body)}.")
     end
   end
 
@@ -66,7 +66,7 @@ class Shiny
     if response.code == '200'
       return JSON.parse(response.body)
     else
-      raise ShinyError.new('Network error:' + response.code)
+      raise ShinyError.new("HTTP Code: #{response.code}, Body: #{JSON.parse(response.body)}.")
     end
   end
 end
