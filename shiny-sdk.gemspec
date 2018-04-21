@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'shiny-sdk'
-  s.version     = '0.4.0'
+  s.version     = '0.4.1'
   s.date        = `git log --pretty="%ai" -n 1`.split(" ").first
   s.summary     = "Shiny SDK"
   s.description = "Shiny Ruby SDK"

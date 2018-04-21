@@ -27,7 +27,7 @@ class Shiny
 
     payload = {'api_key' => @API_KEY}
 
-    event = {"level": level, "spiderName": spider_name} 
+    event = {"level": level.to_i, "spiderName": spider_name} 
 
     # 如果没有手动指定Hash，将会把data做一次md5生成hash
     begin
