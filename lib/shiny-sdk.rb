@@ -1,3 +1,4 @@
+# Shiny Ruby SDK
 require 'json'
 require 'digest/md5'
 require 'digest/sha1'
@@ -12,11 +13,20 @@ end
 
 class Shiny
   def initialize(api_key, api_secret_key, api_host='https://shiny.kotori.moe')
-    @API_KEY = api_key
-    @API_SECRET_KEY = api_secret_key
-    @API_HOST = api_host
+    @API_KEY = api_key.freeze
+    @API_SECRET_KEY = api_secret_key.freeze
+    @API_HOST = api_host.freeze
   end
 
+  # 计算md5
+  def md5(text)
+    Digest::MD5.hexdigest(text)
+  end
+
+  # 计算sha1
+  def sha1(text)
+    Digest::SHA1.hexdigest(text)
+  end
   # 添加数据项
   def add(spider_name, level, data=nil, hash=false)
     if data.nil?
