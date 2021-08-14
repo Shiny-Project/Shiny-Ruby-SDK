@@ -141,6 +141,7 @@ class Shiny
 
   def get_jobs
     url = @API_HOST + "/Job/query?api_key=#{@API_KEY}&sign=#{sign}"
+    uri = URI.parse(url)
     response = http.start {|http| 
       http.request Net::HTTP::Get.new(uri.request_uri)
     }
@@ -153,6 +154,7 @@ class Shiny
 
   def report(job_id, status)
     url = @API_HOST + "/Job/report"
+    uri = URI.parse(url)
     payload = {
       "jobId": job_id,
       "status": status
