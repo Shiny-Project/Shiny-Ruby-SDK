@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.files       = `git ls-files -z`.split("\0")
   s.homepage    = 'https://shiny.kotori.moe'
   s.metadata = {
-    "source_code_uri": "https://github.com/Shiny-Project/Shiny-Ruby-SDK/"
+    "source_code_uri" => "https://github.com/Shiny-Project/Shiny-Ruby-SDK/"
   }
   s.license     = 'MIT'
   s.required_ruby_version = '>= 2.6.0'
