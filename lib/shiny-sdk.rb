@@ -86,7 +86,7 @@ class Shiny
   # 添加多个事件
   def add_many(events)
     payload = {}
-    url = @API_HOST + "Data/add"
+    url = @API_HOST + "/Data/add"
     events.each do |event|
       if event[:hash].nil?
         if event[:data].nil?
@@ -152,7 +152,7 @@ class Shiny
   end
 
   def report(job_id, status)
-    url = @API_HOST + "Job/report"
+    url = @API_HOST + "/Job/report"
     payload = {
       "jobId": job_id,
       "status": status
