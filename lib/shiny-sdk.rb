@@ -28,7 +28,7 @@ class Shiny
     Digest::SHA1.hexdigest(text)
   end
   # 添加数据项
-  def add(spider_name, level, data=nil, hash=false)
+  def add(spider_name, level, data=nil, hash=false, channel: nil)
     if data.nil?
       data = {}
     end
@@ -50,7 +50,9 @@ class Shiny
       raise ShinyError.new('Fail to generate hash.')
     end
 
-    event['data'] = data  
+    event['data'] = data
+
+    event['channel'] = channel unless channel.nil?
 
     payload['sign'] = Digest::SHA1.hexdigest(@API_KEY + @API_SECRET_KEY + event.to_json)
 
