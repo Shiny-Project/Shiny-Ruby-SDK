@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'shiny-sdk'
-  s.version     = '0.4.1'
+  s.version     = '1.0.0'
   s.date        = `git log --pretty="%ai" -n 1`.split(" ").first
   s.summary     = "Shiny SDK"
   s.description = "Shiny Ruby SDK"
@@ -8,6 +8,9 @@ Gem::Specification.new do |s|
   s.email       = 'i@wug.moe'
   s.files       = `git ls-files -z`.split("\0")
   s.homepage    = 'https://shiny.kotori.moe'
+  s.metadata = {
+    "source_code_uri": "https://github.com/Shiny-Project/Shiny-Ruby-SDK/"
+  }
   s.license     = 'MIT'
-  s.required_ruby_version = '>= 2.0.0'
+  s.required_ruby_version = '>= 2.6.0'
 end
