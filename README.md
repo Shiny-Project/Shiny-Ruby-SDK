@@ -20,3 +20,12 @@ shiny.add(spider_name:String, level:Integer, data:Hash, hash:String)
 # 其中前三项为必填，hash为选填。
 # 不填写hash 默认把data MD5 一次做hash。
 ```
+
+## 测试
+
+```bash
+bundle install
+bundle exec ruby -Itest test/shiny_sdk_test.rb
+```
+
+测试使用本地模拟请求，不连接真实服务。`test/fixtures/add_compatibility.json` 保存了修复前 `add()` 的 17 组行为基准，用于逐字节比对请求 JSON、签名和表单编码，并检查返回值及异常类型；`ShinyError` 的错误信息也会比对。

@@ -24,7 +24,7 @@ class Shiny
     Hash[payload.sort].keys.each do |key|
       data += payload[key].to_s
     end
-    data
+    sha1(data)
   end
 
 
@@ -89,7 +89,7 @@ class Shiny
     url = @API_HOST + "/Data/add"
     events.each do |event|
       if event[:hash].nil?
-        if event[:data].nil?
+        unless event[:data].nil?
           if event[:data][:hash]
             event[:hash] = event[:data][:hash]
             event[:data].delete(:hash)
@@ -99,8 +99,8 @@ class Shiny
         else
           raise ShinyError.new("Missing parameters.")
         end
-        event[:level] = event[:level].to_i
       end
+      event[:level] = event[:level].to_i
     end
     payload[:event] = events.to_json
 
@@ -140,8 +140,11 @@ class Shiny
   end
 
   def get_jobs
-    url = @API_HOST + "/Job/query?api_key=#{@API_KEY}&sign=#{sign}"
+    query = URI.encode_www_form(api_key: @API_KEY, sign: sign)
+    url = @API_HOST + "/Job/query?#{query}"
     uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true if uri.scheme == 'https'
     response = http.start {|http| 
       http.request Net::HTTP::Get.new(uri.request_uri)
     }
@@ -154,12 +157,12 @@ class Shiny
 
   def report(job_id, status)
     url = @API_HOST + "/Job/report"
-    uri = URI.parse(url)
     payload = {
       "jobId": job_id,
       "status": status
     }
-    payload_sign = sign(payload)
+    payload[:sign] = sign(payload)
+    payload[:api_key] = @API_KEY
     response = Net::HTTP.post_form(URI.parse(url), payload)
     if response.code != '200'
       begin

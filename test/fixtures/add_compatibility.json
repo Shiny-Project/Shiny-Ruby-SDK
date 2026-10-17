@@ -1,0 +1,595 @@
+[
+  {
+    "name": "omitted_data",
+    "args": [
+      "test",
+      1
+    ],
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "response": [
+      "200",
+      "{\"ok\":true,\"id\":17,\"nested\":{\"a\":[1,null]}}"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "516a0abd16e1406cc5289ec0f8cd268ff6823e17",
+        "event": "{\"level\":1,\"spiderName\":\"test\",\"hash\":\"99914b932bd37a50b983c5e7c90ae93b\",\"data\":{}}"
+      },
+      "body": "api_key=test-api-key&sign=516a0abd16e1406cc5289ec0f8cd268ff6823e17&event=%7B%22level%22%3A1%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%2299914b932bd37a50b983c5e7c90ae93b%22%2C%22data%22%3A%7B%7D%7D"
+    },
+    "result": {
+      "ok": true,
+      "id": 17,
+      "nested": {
+        "a": [
+          1,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "name": "nil_data",
+    "args": [
+      "test",
+      "2",
+      null
+    ],
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "response": [
+      "200",
+      "{\"ok\":true,\"id\":17,\"nested\":{\"a\":[1,null]}}"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "e6faba95cb4aad55ab58ac870dc8856cc2160683",
+        "event": "{\"level\":2,\"spiderName\":\"test\",\"hash\":\"99914b932bd37a50b983c5e7c90ae93b\",\"data\":{}}"
+      },
+      "body": "api_key=test-api-key&sign=e6faba95cb4aad55ab58ac870dc8856cc2160683&event=%7B%22level%22%3A2%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%2299914b932bd37a50b983c5e7c90ae93b%22%2C%22data%22%3A%7B%7D%7D"
+    },
+    "result": {
+      "ok": true,
+      "id": 17,
+      "nested": {
+        "a": [
+          1,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "name": "nested_unicode_data",
+    "args": [
+      "爬虫",
+      "3",
+      {
+        "z": [
+          true,
+          false,
+          null,
+          1.5
+        ],
+        "a": {
+          "消息": "你好 &+=?/ 😀"
+        }
+      }
+    ],
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "response": [
+      "200",
+      "{\"ok\":true,\"id\":17,\"nested\":{\"a\":[1,null]}}"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "4922c9cc8b952dc02c3f749153552242a505c25e",
+        "event": "{\"level\":3,\"spiderName\":\"爬虫\",\"hash\":\"950f474e0aadaabb0c78f543c059c28b\",\"data\":{\"z\":[true,false,null,1.5],\"a\":{\"消息\":\"你好 &+=?/ 😀\"}}}"
+      },
+      "body": "api_key=test-api-key&sign=4922c9cc8b952dc02c3f749153552242a505c25e&event=%7B%22level%22%3A3%2C%22spiderName%22%3A%22%E7%88%AC%E8%99%AB%22%2C%22hash%22%3A%22950f474e0aadaabb0c78f543c059c28b%22%2C%22data%22%3A%7B%22z%22%3A%5Btrue%2Cfalse%2Cnull%2C1.5%5D%2C%22a%22%3A%7B%22%E6%B6%88%E6%81%AF%22%3A%22%E4%BD%A0%E5%A5%BD+%26%2B%3D%3F%2F+%F0%9F%98%80%22%7D%7D%7D"
+    },
+    "result": {
+      "ok": true,
+      "id": 17,
+      "nested": {
+        "a": [
+          1,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "name": "manual_hash",
+    "args": [
+      "test",
+      1,
+      {
+        "b": 2,
+        "a": 1
+      },
+      "fixed-hash"
+    ],
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "response": [
+      "200",
+      "{\"ok\":true,\"id\":17,\"nested\":{\"a\":[1,null]}}"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "acf3c5cbfef78ab9c7ef0c5502ebedbb0d4aa571",
+        "event": "{\"level\":1,\"spiderName\":\"test\",\"hash\":\"fixed-hash\",\"data\":{\"b\":2,\"a\":1}}"
+      },
+      "body": "api_key=test-api-key&sign=acf3c5cbfef78ab9c7ef0c5502ebedbb0d4aa571&event=%7B%22level%22%3A1%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%22fixed-hash%22%2C%22data%22%3A%7B%22b%22%3A2%2C%22a%22%3A1%7D%7D"
+    },
+    "result": {
+      "ok": true,
+      "id": 17,
+      "nested": {
+        "a": [
+          1,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "name": "false_hash",
+    "args": [
+      "test",
+      1,
+      {
+        "b": 2,
+        "a": 1
+      },
+      false
+    ],
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "response": [
+      "200",
+      "{\"ok\":true,\"id\":17,\"nested\":{\"a\":[1,null]}}"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "26753a8a893344f20135bcfbf667d2ff736fe48c",
+        "event": "{\"level\":1,\"spiderName\":\"test\",\"hash\":\"9915965eb40d343a8fe26e4e341d1a05\",\"data\":{\"b\":2,\"a\":1}}"
+      },
+      "body": "api_key=test-api-key&sign=26753a8a893344f20135bcfbf667d2ff736fe48c&event=%7B%22level%22%3A1%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%229915965eb40d343a8fe26e4e341d1a05%22%2C%22data%22%3A%7B%22b%22%3A2%2C%22a%22%3A1%7D%7D"
+    },
+    "result": {
+      "ok": true,
+      "id": 17,
+      "nested": {
+        "a": [
+          1,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "name": "empty_hash",
+    "args": [
+      "test",
+      1,
+      {},
+      ""
+    ],
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "response": [
+      "200",
+      "{\"ok\":true,\"id\":17,\"nested\":{\"a\":[1,null]}}"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "06f9e44e0dade5ee2a0db6c1445b91734baac875",
+        "event": "{\"level\":1,\"spiderName\":\"test\",\"hash\":\"\",\"data\":{}}"
+      },
+      "body": "api_key=test-api-key&sign=06f9e44e0dade5ee2a0db6c1445b91734baac875&event=%7B%22level%22%3A1%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%22%22%2C%22data%22%3A%7B%7D%7D"
+    },
+    "result": {
+      "ok": true,
+      "id": 17,
+      "nested": {
+        "a": [
+          1,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "name": "channel",
+    "args": [
+      "test",
+      1,
+      {}
+    ],
+    "channel": "邮件 & notifications",
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "response": [
+      "200",
+      "{\"ok\":true,\"id\":17,\"nested\":{\"a\":[1,null]}}"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "fd99bdb351bdccc8eda2f8488b251b342799411b",
+        "event": "{\"level\":1,\"spiderName\":\"test\",\"hash\":\"99914b932bd37a50b983c5e7c90ae93b\",\"data\":{},\"channel\":\"邮件 & notifications\"}"
+      },
+      "body": "api_key=test-api-key&sign=fd99bdb351bdccc8eda2f8488b251b342799411b&event=%7B%22level%22%3A1%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%2299914b932bd37a50b983c5e7c90ae93b%22%2C%22data%22%3A%7B%7D%2C%22channel%22%3A%22%E9%82%AE%E4%BB%B6+%26+notifications%22%7D"
+    },
+    "result": {
+      "ok": true,
+      "id": 17,
+      "nested": {
+        "a": [
+          1,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "name": "false_channel",
+    "args": [
+      "test",
+      1,
+      {}
+    ],
+    "channel": false,
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "response": [
+      "200",
+      "{\"ok\":true,\"id\":17,\"nested\":{\"a\":[1,null]}}"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "170bee1d209d8a376fe28bb11887220cca2bb8f4",
+        "event": "{\"level\":1,\"spiderName\":\"test\",\"hash\":\"99914b932bd37a50b983c5e7c90ae93b\",\"data\":{},\"channel\":false}"
+      },
+      "body": "api_key=test-api-key&sign=170bee1d209d8a376fe28bb11887220cca2bb8f4&event=%7B%22level%22%3A1%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%2299914b932bd37a50b983c5e7c90ae93b%22%2C%22data%22%3A%7B%7D%2C%22channel%22%3Afalse%7D"
+    },
+    "result": {
+      "ok": true,
+      "id": 17,
+      "nested": {
+        "a": [
+          1,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "name": "nil_channel",
+    "args": [
+      "test",
+      1,
+      {}
+    ],
+    "channel": null,
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "response": [
+      "200",
+      "{\"ok\":true,\"id\":17,\"nested\":{\"a\":[1,null]}}"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "516a0abd16e1406cc5289ec0f8cd268ff6823e17",
+        "event": "{\"level\":1,\"spiderName\":\"test\",\"hash\":\"99914b932bd37a50b983c5e7c90ae93b\",\"data\":{}}"
+      },
+      "body": "api_key=test-api-key&sign=516a0abd16e1406cc5289ec0f8cd268ff6823e17&event=%7B%22level%22%3A1%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%2299914b932bd37a50b983c5e7c90ae93b%22%2C%22data%22%3A%7B%7D%7D"
+    },
+    "result": {
+      "ok": true,
+      "id": 17,
+      "nested": {
+        "a": [
+          1,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "name": "invalid_level",
+    "args": [
+      "test",
+      "invalid",
+      {}
+    ],
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "response": [
+      "200",
+      "{\"ok\":true,\"id\":17,\"nested\":{\"a\":[1,null]}}"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "269656dbe7c64f9cce5c56749a26bf7aa08a4abf",
+        "event": "{\"level\":0,\"spiderName\":\"test\",\"hash\":\"99914b932bd37a50b983c5e7c90ae93b\",\"data\":{}}"
+      },
+      "body": "api_key=test-api-key&sign=269656dbe7c64f9cce5c56749a26bf7aa08a4abf&event=%7B%22level%22%3A0%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%2299914b932bd37a50b983c5e7c90ae93b%22%2C%22data%22%3A%7B%7D%7D"
+    },
+    "result": {
+      "ok": true,
+      "id": 17,
+      "nested": {
+        "a": [
+          1,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "name": "string_data",
+    "args": [
+      "test",
+      1,
+      "plain text"
+    ],
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "response": [
+      "200",
+      "{\"ok\":true,\"id\":17,\"nested\":{\"a\":[1,null]}}"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "6a1df1f8cf968cdb4bebc52f307462338f188dd7",
+        "event": "{\"level\":1,\"spiderName\":\"test\",\"hash\":\"a242b30718ba7d56ae982c65c6383976\",\"data\":\"plain text\"}"
+      },
+      "body": "api_key=test-api-key&sign=6a1df1f8cf968cdb4bebc52f307462338f188dd7&event=%7B%22level%22%3A1%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%22a242b30718ba7d56ae982c65c6383976%22%2C%22data%22%3A%22plain+text%22%7D"
+    },
+    "result": {
+      "ok": true,
+      "id": 17,
+      "nested": {
+        "a": [
+          1,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "name": "default_host",
+    "client_args": [
+      "test-api-key",
+      "test-secret"
+    ],
+    "args": [
+      "test",
+      1,
+      {}
+    ],
+    "response": [
+      "200",
+      "{\"ok\":true,\"id\":17,\"nested\":{\"a\":[1,null]}}"
+    ],
+    "request": {
+      "url": "https://shiny.kotori.moe/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "516a0abd16e1406cc5289ec0f8cd268ff6823e17",
+        "event": "{\"level\":1,\"spiderName\":\"test\",\"hash\":\"99914b932bd37a50b983c5e7c90ae93b\",\"data\":{}}"
+      },
+      "body": "api_key=test-api-key&sign=516a0abd16e1406cc5289ec0f8cd268ff6823e17&event=%7B%22level%22%3A1%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%2299914b932bd37a50b983c5e7c90ae93b%22%2C%22data%22%3A%7B%7D%7D"
+    },
+    "result": {
+      "ok": true,
+      "id": 17,
+      "nested": {
+        "a": [
+          1,
+          null
+        ]
+      }
+    }
+  },
+  {
+    "name": "api_error",
+    "args": [
+      "test",
+      1,
+      {}
+    ],
+    "response": [
+      "403",
+      "{\"error\":{\"info\":\"invalid signature\",\"code\":401}}"
+    ],
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "516a0abd16e1406cc5289ec0f8cd268ff6823e17",
+        "event": "{\"level\":1,\"spiderName\":\"test\",\"hash\":\"99914b932bd37a50b983c5e7c90ae93b\",\"data\":{}}"
+      },
+      "body": "api_key=test-api-key&sign=516a0abd16e1406cc5289ec0f8cd268ff6823e17&event=%7B%22level%22%3A1%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%2299914b932bd37a50b983c5e7c90ae93b%22%2C%22data%22%3A%7B%7D%7D"
+    },
+    "error": {
+      "class": "ShinyError",
+      "message": "Shiny error: invalid signature code=401"
+    }
+  },
+  {
+    "name": "non_json_http_error",
+    "args": [
+      "test",
+      1,
+      {}
+    ],
+    "response": [
+      "502",
+      "Bad Gateway"
+    ],
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "516a0abd16e1406cc5289ec0f8cd268ff6823e17",
+        "event": "{\"level\":1,\"spiderName\":\"test\",\"hash\":\"99914b932bd37a50b983c5e7c90ae93b\",\"data\":{}}"
+      },
+      "body": "api_key=test-api-key&sign=516a0abd16e1406cc5289ec0f8cd268ff6823e17&event=%7B%22level%22%3A1%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%2299914b932bd37a50b983c5e7c90ae93b%22%2C%22data%22%3A%7B%7D%7D"
+    },
+    "error": {
+      "class": "ShinyError",
+      "message": "Network error: 502"
+    }
+  },
+  {
+    "name": "invalid_success_json",
+    "args": [
+      "test",
+      1,
+      {}
+    ],
+    "response": [
+      "200",
+      "invalid"
+    ],
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "516a0abd16e1406cc5289ec0f8cd268ff6823e17",
+        "event": "{\"level\":1,\"spiderName\":\"test\",\"hash\":\"99914b932bd37a50b983c5e7c90ae93b\",\"data\":{}}"
+      },
+      "body": "api_key=test-api-key&sign=516a0abd16e1406cc5289ec0f8cd268ff6823e17&event=%7B%22level%22%3A1%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%2299914b932bd37a50b983c5e7c90ae93b%22%2C%22data%22%3A%7B%7D%7D"
+    },
+    "error": {
+      "class": "JSON::ParserError"
+    }
+  },
+  {
+    "name": "malformed_error_json",
+    "args": [
+      "test",
+      1,
+      {}
+    ],
+    "response": [
+      "500",
+      "{}"
+    ],
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "request": {
+      "url": "https://example.invalid/Data/add",
+      "payload": {
+        "api_key": "test-api-key",
+        "sign": "516a0abd16e1406cc5289ec0f8cd268ff6823e17",
+        "event": "{\"level\":1,\"spiderName\":\"test\",\"hash\":\"99914b932bd37a50b983c5e7c90ae93b\",\"data\":{}}"
+      },
+      "body": "api_key=test-api-key&sign=516a0abd16e1406cc5289ec0f8cd268ff6823e17&event=%7B%22level%22%3A1%2C%22spiderName%22%3A%22test%22%2C%22hash%22%3A%2299914b932bd37a50b983c5e7c90ae93b%22%2C%22data%22%3A%7B%7D%7D"
+    },
+    "error": {
+      "class": "NoMethodError"
+    }
+  },
+  {
+    "name": "hash_generation_error",
+    "args": [
+      "test",
+      1,
+      null
+    ],
+    "bad_data": true,
+    "client_args": [
+      "test-api-key",
+      "test-secret",
+      "https://example.invalid"
+    ],
+    "response": [
+      "200",
+      "{\"ok\":true,\"id\":17,\"nested\":{\"a\":[1,null]}}"
+    ],
+    "request": null,
+    "error": {
+      "class": "ShinyError",
+      "message": "Fail to generate hash."
+    }
+  }
+]
